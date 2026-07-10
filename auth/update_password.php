@@ -1,31 +1,46 @@
 <?php
+
 include("../config/database.php");
 
-$token = $_POST['token'];
-$password = $_POST['password'];
+$email = trim($_POST['email']);
 
-// secure password
+$password = trim($_POST['password']);
+
+$confirm = trim($_POST['confirm_password']);
+
+if($password != $confirm){
+
+die("Passwords do not match!");
+
+}
+
+// Password hash
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// find email from token
-$query = "SELECT * FROM password_resets WHERE token='$token'";
-$result = mysqli_query($conn, $query);
+// Update password
+$update = mysqli_query($conn,"
+UPDATE users
+SET password='$hashedPassword'
+WHERE email='$email'
+");
 
-if(mysqli_num_rows($result) > 0){
+if($update){
 
-    $row = mysqli_fetch_assoc($result);
-    $email = $row['email'];
+// Delete OTP after successful reset
+mysqli_query($conn,"
+DELETE FROM password_otp
+WHERE email='$email'
+");
 
-    // update password
-    $update = "UPDATE users SET password='$hashedPassword' WHERE email='$email'";
-    mysqli_query($conn, $update);
+// Redirect to login page
+header("Location: login.php?success=1");
+exit();
 
-    // delete token (one-time use)
-    mysqli_query($conn, "DELETE FROM password_resets WHERE token='$token'");
-
-    echo "Password successfully updated!";
 }
-else {
-    echo "Invalid or expired link!";
+else{
+
+echo "Password update failed.";
+
 }
+
 ?>

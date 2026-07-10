@@ -1,21 +1,54 @@
 <?php
-
 session_start();
 
-if($_SESSION['role']!="Admin"){
-
+if(!isset($_SESSION['role']) || $_SESSION['role']!="Admin"){
     header("Location: ../auth/login.php");
     exit();
-
 }
 
+include("../config/database.php");
+
+/* Total Doctors */
+$doctor_query=mysqli_query($conn,"SELECT COUNT(*) AS total FROM doctors");
+$doctor=mysqli_fetch_assoc($doctor_query);
+
+/* Total Patients */
+$patient_query=mysqli_query($conn,"SELECT COUNT(*) AS total FROM patients");
+$patient=mysqli_fetch_assoc($patient_query);
+
+/* Total Appointments */
+$appointment_query=mysqli_query($conn,"SELECT COUNT(*) AS total FROM appointments");
+$appointment=mysqli_fetch_assoc($appointment_query);
+
+/* Revenue */
+
+$revenue=array("total"=>0);
+
+$check=mysqli_query($conn,"SHOW TABLES LIKE 'bills'");
+
+if(mysqli_num_rows($check)>0){
+
+    $column=mysqli_query($conn,"SHOW COLUMNS FROM bills LIKE 'total_amount'");
+
+    if(mysqli_num_rows($column)>0){
+
+        $result=mysqli_query($conn,"SELECT SUM(total_amount) AS total FROM bills");
+
+        if($result){
+            $revenue=mysqli_fetch_assoc($result);
+        }
+
+    }
+
+}
 ?>
 
 <!DOCTYPE html>
-
 <html>
 
 <head>
+
+<meta charset="UTF-8">
 
 <title>Admin Dashboard</title>
 
@@ -40,46 +73,43 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </li>
 
 <li>
-    <i class="fa-solid fa-user-doctor"></i>
-    <a href="../doctor/doctors.php">Doctors</a>
+<i class="fa-solid fa-user-doctor"></i>
+<a href="../doctor/doctors.php">Doctors</a>
 </li>
 
 <li>
-
 <i class="fa-solid fa-bed"></i>
-
 <a href="../patient/patients.php">Patients</a>
-
 </li>
 
 <li>
 <i class="fa-solid fa-calendar-check"></i>
-<a href="appointments.php">Appointments</a>
+<a href="../appointment/appointments.php">Appointments</a>
 </li>
 
 <li>
 <i class="fa-solid fa-flask"></i>
-<a href="laboratory.php">Laboratory</a>
+<a href="../laboratory/laboratory.php">Laboratory</a>
 </li>
 
 <li>
 <i class="fa-solid fa-pills"></i>
-<a href="pharmacy.php">Pharmacy</a>
+<a href="../pharmacy/pharmacy.php">Pharmacy</a>
 </li>
 
 <li>
 <i class="fa-solid fa-file-invoice-dollar"></i>
-<a href="billing.php">Billing</a>
+<a href="../billing/billing.php">Billing</a>
 </li>
 
 <li>
-<i class="fa-solid fa-chart-line"></i>
-<a href="reports.php">Reports</a>
+<i class="fa-solid fa-chart-column"></i>
+<a href="../reports/reports.php">Reports</a>
 </li>
 
 <li>
 <i class="fa-solid fa-gear"></i>
-<a href="settings.php">Settings</a>
+<a href="../settings/settings.php">Settings</a>
 </li>
 
 <li>
@@ -87,30 +117,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <a href="../auth/logout.php">Logout</a>
 </li>
 
+</ul>
 
 </div>
 
 <div class="main">
 
-<h1>Welcome Admin</h1>
+<div class="topbar">
 
-    <div class="topbar">
+<div>
 
-    <div>
+<h2>Admin Dashboard</h2>
 
-        <h2>Admin Dashboard</h2>
+</div>
 
-    </div>
+<div class="top-icons">
 
-    <div class="top-icons">
+<i class="fa-solid fa-bell"></i>
 
-        <i class="fa-solid fa-bell"></i>
+<i class="fa-solid fa-envelope"></i>
 
-        <i class="fa-solid fa-envelope"></i>
+<i class="fa-solid fa-user-circle"></i>
 
-        <i class="fa-solid fa-user-circle"></i>
-
-    </div>
+</div>
 
 </div>
 
@@ -120,7 +149,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <i class="fa-solid fa-user-doctor"></i>
 
-<h2>25</h2>
+<h2><?php echo $doctor['total']; ?></h2>
 
 <p>Total Doctors</p>
 
@@ -130,7 +159,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <i class="fa-solid fa-bed"></i>
 
-<h2>150</h2>
+<h2><?php echo $patient['total']; ?></h2>
 
 <p>Total Patients</p>
 
@@ -140,7 +169,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <i class="fa-solid fa-calendar-check"></i>
 
-<h2>40</h2>
+<h2><?php echo $appointment['total']; ?></h2>
 
 <p>Appointments</p>
 
@@ -150,7 +179,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <i class="fa-solid fa-money-bill-wave"></i>
 
-<h2>$12,500</h2>
+<h2>Rs. <?php echo $revenue['total'] ?? 0; ?></h2>
 
 <p>Revenue</p>
 
@@ -161,73 +190,109 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <div class="table-box">
 
 <div class="quick-actions">
-    <div class="schedule">
+
+<div class="schedule">
 
 <h2>Today's Schedule</h2>
 
+<?php
+
+$today = date("Y-m-d");
+
+$schedule = mysqli_query($conn,"
+SELECT *
+FROM appointments
+WHERE appointment_date='$today'
+ORDER BY appointment_time ASC
+LIMIT 5
+");
+
+if(mysqli_num_rows($schedule)>0){
+
+while($row=mysqli_fetch_assoc($schedule)){
+
+?>
+
 <div class="schedule-item">
 
-09:00 AM
+<?php echo date("h:i A",strtotime($row['appointment_time'])); ?>
 
-<span>Dr Ahmed - General Checkup</span>
+<span>
+
+<?php echo $row['doctor_name']; ?>
+
+- <?php echo $row['patient_name']; ?>
+
+</span>
 
 </div>
+
+<?php
+
+}
+
+}else{
+
+?>
 
 <div class="schedule-item">
 
-11:30 AM
-
-<span>Dr Hassan - Surgery</span>
+No Appointments Today
 
 </div>
 
-<div class="schedule-item">
+<?php } ?>
 
-02:00 PM
+</div>
 
-<span>Patient Follow-up</span>
+
+<div class="action-card"
+onclick="window.location='../doctor/add_doctor.php'">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<h3>Add Doctor</h3>
+
+</div>
+
+
+<div class="action-card"
+onclick="window.location='../patient/add_patient.php'">
+
+<i class="fa-solid fa-hospital-user"></i>
+
+<h3>Add Patient</h3>
+
+</div>
+
+
+<div class="action-card"
+onclick="window.location='../appointment/add_appointment.php'">
+
+<i class="fa-solid fa-calendar-plus"></i>
+
+<h3>New Appointment</h3>
+
+</div>
+
+
+<div class="action-card"
+onclick="window.location='../reports/reports.php'">
+
+<i class="fa-solid fa-file-medical"></i>
+
+<h3>Hospital Report</h3>
 
 </div>
 
 </div>
 
-    <div class="action-card">
-
-        <i class="fa-solid fa-user-plus"></i>
-
-        <h3>Add Doctor</h3>
-
-    </div>
-
-    <div class="action-card">
-
-        <i class="fa-solid fa-hospital-user"></i>
-
-        <h3>Add Patient</h3>
-
-    </div>
-
-    <div class="action-card">
-
-        <i class="fa-solid fa-calendar-plus"></i>
-
-        <h3>New Appointment</h3>
-
-    </div>
-
-    <div class="action-card">
-
-        <i class="fa-solid fa-file-medical"></i>
-
-        <h3>Lab Report</h3>
-
-    </div>
-
-</div>
 
 <h2>Recent Appointments</h2>
 
 <table>
+
+<thead>
 
 <tr>
 
@@ -241,42 +306,114 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </tr>
 
+</thead>
+
+<tbody>
+
+<?php
+
+$sql = "SELECT *
+FROM appointments
+ORDER BY id DESC
+LIMIT 5";
+
+$result = mysqli_query($conn,$sql);
+
+if(mysqli_num_rows($result)>0){
+
+while($row=mysqli_fetch_assoc($result)){
+
+?>
+
 <tr>
 
-<td>Ali Khan</td>
+<td><?php echo $row['patient_name']; ?></td>
 
-<td>Dr Ahmed</td>
+<td><?php echo $row['doctor_name']; ?></td>
 
-<td>06 July</td>
+<td><?php echo $row['appointment_date']; ?></td>
 
-<td><span class="active">Completed</span></td>
+<td>
+
+<?php
+
+if($row['status']=="Completed"){
+
+?>
+
+<span class="active">
+
+<?php echo $row['status']; ?>
+
+</span>
+
+<?php
+
+}elseif($row['status']=="Pending"){
+
+?>
+
+<span class="pending">
+
+<?php echo $row['status']; ?>
+
+</span>
+
+<?php
+
+}else{
+
+?>
+
+<span class="inactive">
+
+<?php echo $row['status']; ?>
+
+</span>
+
+<?php } ?>
+
+</td>
 
 </tr>
 
+<?php
+
+}
+
+}else{
+
+?>
+
 <tr>
 
-<td>Sara Ali</td>
+<td colspan="4" style="text-align:center;padding:20px;">
 
-<td>Dr Hassan</td>
+No Recent Appointments
 
-<td>07 July</td>
-
-<td><span class="pending">Pending</span></td>
+</td>
 
 </tr>
+
+<?php } ?>
+
+</tbody>
 
 </table>
 
-
 </div>
 
 </div>
+
 <script src="../assets/js/dashboard.js"></script>
+
 </body>
 
 </html>
+
 <footer>
 
 © 2026 Subhan Care Hospital Management System
 
 </footer>
+

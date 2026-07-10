@@ -66,4 +66,9 @@ if(mysqli_query($conn,$sql)){
 
 }
 
+mysqli_query($conn,"
+INSERT INTO notifications(message)
+VALUES('New Patient Registered')
+");
+
 ?>

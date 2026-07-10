@@ -114,13 +114,32 @@ style="border-radius:50%; object-fit:cover;">
 
 <td class="action-buttons">
 
-<a href="edit_patient.php?id=<?php echo $row['id']; ?>">
-<i class="fa-solid fa-pen edit"></i>
+<!-- Patient Report -->
+
+<a href="../reports/patient_report.php?id=<?php echo $row['id']; ?>"
+title="Patient Report">
+
+<i class="fa-solid fa-file-medical report"></i>
+
 </a>
 
+<!-- Edit -->
+
+<a href="edit_patient.php?id=<?php echo $row['id']; ?>"
+title="Edit">
+
+<i class="fa-solid fa-pen edit"></i>
+
+</a>
+
+<!-- Delete -->
+
 <a href="delete_patient.php?id=<?php echo $row['id']; ?>"
-onclick="return confirm('Delete this patient?')">
+onclick="return confirm('Delete this patient?')"
+title="Delete">
+
 <i class="fa-solid fa-trash delete"></i>
+
 </a>
 
 </td>

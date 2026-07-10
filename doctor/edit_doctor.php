@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION['role'])){
+    header("Location: ../auth/login.php");
+    exit();
+}
+
 include("../config/database.php");
 
 $id = $_GET['id'];
@@ -12,15 +19,50 @@ $row = mysqli_fetch_assoc($result);
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
+<meta charset="UTF-8">
 
 <title>Edit Doctor</title>
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>Subhan Care</h2>
+
+<ul>
+
+<li>
+    <i class="fa-solid fa-house"></i>
+    <a href="../admin/dashboard.php">Dashboard</a>
+</li>
+
+<li class="active">
+    <i class="fa-solid fa-user-doctor"></i>
+    <a href="doctors.php">Doctors</a>
+</li>
+
+<li>
+    <i class="fa-solid fa-right-from-bracket"></i>
+    <a href="../auth/logout.php">Logout</a>
+</li>
+
+</ul>
+
+</div>
+
+<!-- MAIN -->
 
 <div class="main">
 
@@ -44,7 +86,8 @@ $row = mysqli_fetch_assoc($result);
 
 <input type="text"
 name="name"
-value="<?php echo $row['full_name']; ?>">
+value="<?php echo $row['full_name']; ?>"
+required>
 
 </div>
 
@@ -54,7 +97,8 @@ value="<?php echo $row['full_name']; ?>">
 
 <input type="email"
 name="email"
-value="<?php echo $row['email']; ?>">
+value="<?php echo $row['email']; ?>"
+required>
 
 </div>
 
@@ -68,7 +112,8 @@ value="<?php echo $row['email']; ?>">
 
 <input type="text"
 name="phone"
-value="<?php echo $row['phone']; ?>">
+value="<?php echo $row['phone']; ?>"
+required>
 
 </div>
 
@@ -78,7 +123,8 @@ value="<?php echo $row['phone']; ?>">
 
 <input type="text"
 name="department"
-value="<?php echo $row['department']; ?>">
+value="<?php echo $row['department']; ?>"
+required>
 
 </div>
 
@@ -93,6 +139,8 @@ value="<?php echo $row['department']; ?>">
 </div>
 
 <button class="save-btn">
+
+<i class="fa-solid fa-floppy-disk"></i>
 
 Update Doctor
 

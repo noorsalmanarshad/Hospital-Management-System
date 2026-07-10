@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Forgot Password</title>
+<title>Reset Password</title>
 
 <link rel="stylesheet" href="../assets/css/login.css">
 
@@ -23,47 +23,50 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="forgot-card">
 
-<i class="fa-solid fa-key forgot-icon"></i>
+<i class="fa-solid fa-lock forgot-icon"></i>
 
-<h2>Forgot Password</h2>
+<h2>Reset Password</h2>
 
-<p>
+<p>Enter your new password.</p>
 
-Enter your registered email address.
+<form action="update_password.php" method="POST">
 
-We'll send you a password reset link.
-
-</p>
-
-<form action="send_otp.php" method="POST">
+<input
+type="hidden"
+name="email"
+value="<?php echo htmlspecialchars($_GET['email']); ?>">
 
 <div class="input-box">
 
-<i class="fa-solid fa-envelope"></i>
+<i class="fa-solid fa-lock"></i>
 
 <input
-type="email"
-name="email"
-placeholder="Enter Email"
+type="password"
+name="password"
+placeholder="New Password"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+name="confirm_password"
+placeholder="Confirm Password"
 required>
 
 </div>
 
 <button class="login-btn">
 
-Send OTP
+Update Password
 
 </button>
 
 </form>
-
-<a href="login.php" class="back-login">
-
-<i class="fa-solid fa-arrow-left"></i>
-
-Back to Login
-
-</a>
 
 </div>
 
