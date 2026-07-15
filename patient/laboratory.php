@@ -2,27 +2,27 @@
 
 session_start();
 
-if(!isset($_SESSION['doctor_email'])){
+if(!isset($_SESSION['patient_email'])){
     header("Location: ../auth/login.php");
     exit();
 }
 
 include("../config/database.php");
 
-$email = $_SESSION['doctor_email'];
+$email=$_SESSION['patient_email'];
 
-$doctor = mysqli_fetch_assoc(
-mysqli_query($conn,"SELECT * FROM doctors WHERE email='$email'")
+$patient=mysqli_fetch_assoc(
+mysqli_query($conn,"SELECT * FROM patients WHERE email='$email'")
 );
 
-$doctorName = $doctor['full_name'];
+$patientName=$patient['full_name'];
 
-$sql = "SELECT *
+$sql="SELECT *
 FROM laboratory_tests
-WHERE doctor_name='$doctorName'
-ORDER BY id DESC";
+WHERE patient_name='$patientName'
+ORDER BY test_date DESC";
 
-$result = mysqli_query($conn,$sql);
+$result=mysqli_query($conn,$sql);
 
 ?>
 
@@ -47,7 +47,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="sidebar">
 
-<h2>Doctor Panel</h2>
+<h2>Patient Panel</h2>
 
 <ul>
 
@@ -57,13 +57,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </li>
 
 <li>
-<i class="fa-solid fa-calendar-check"></i>
-<a href="appointments.php">Appointments</a>
+<i class="fa-solid fa-user"></i>
+<a href="profile.php">My Profile</a>
 </li>
 
 <li>
-<i class="fa-solid fa-bed"></i>
-<a href="patients.php">My Patients</a>
+<i class="fa-solid fa-user-doctor"></i>
+<a href="doctor.php">My Doctor</a>
+</li>
+
+<li>
+<i class="fa-solid fa-calendar-check"></i>
+<a href="appointments.php">Appointments</a>
 </li>
 
 <li class="active">
@@ -74,6 +79,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <li>
 <i class="fa-solid fa-file-prescription"></i>
 <a href="prescriptions.php">Prescriptions</a>
+</li>
+
+<li>
+<i class="fa-solid fa-money-bill"></i>
+<a href="bills.php">Bills</a>
+</li>
+
+<li>
+<i class="fa-solid fa-comment"></i>
+<a href="feedback.php">Feedback</a>
 </li>
 
 <li>
@@ -89,7 +104,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="topbar">
 
-<h2>Laboratory Reports</h2>
+<h2>My Laboratory Reports</h2>
 
 </div>
 
@@ -97,21 +112,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <table>
 
+<thead>
+
 <tr>
 
 <th>ID</th>
 
-<th>Patient</th>
+<th>Test</th>
 
-<th>Test Name</th>
-
-<th>Test Date</th>
+<th>Date</th>
 
 <th>Status</th>
 
 <th>Action</th>
 
 </tr>
+
+</thead>
+
+<tbody>
 
 <?php
 
@@ -124,8 +143,6 @@ while($row=mysqli_fetch_assoc($result)){
 <tr>
 
 <td><?php echo $row['id']; ?></td>
-
-<td><?php echo $row['patient_name']; ?></td>
 
 <td><?php echo $row['test_name']; ?></td>
 
@@ -141,10 +158,12 @@ while($row=mysqli_fetch_assoc($result)){
 
 </td>
 
-<td class="action-buttons">
+<td>
 
-<a href="view_test.php?id=<?php echo $row['id']; ?>" title="View">
-    <i class="fa-solid fa-eye report"></i>
+<a href="view_report.php?id=<?php echo $row['id']; ?>">
+
+<i class="fa-solid fa-eye report"></i>
+
 </a>
 
 </td>
@@ -161,17 +180,17 @@ while($row=mysqli_fetch_assoc($result)){
 
 <tr>
 
-<td colspan="6" style="text-align:center;padding:20px;">
+<td colspan="5" style="text-align:center;padding:20px;">
+
 No Laboratory Reports Found
+
 </td>
 
 </tr>
 
-<?php
+<?php } ?>
 
-}
-
-?>
+</tbody>
 
 </table>
 

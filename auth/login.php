@@ -169,11 +169,9 @@
 
         <option value="Doctor">Doctor</option>
 
-        <option value="Receptionist">Receptionist</option>
+        <option value="Patient">Patient</option>
 
-        <option value="Pharmacist">Pharmacist</option>
-
-        <option value="Billing">Billing</option>
+        <option value="Staff">Staff</option>
 
     </select>
 

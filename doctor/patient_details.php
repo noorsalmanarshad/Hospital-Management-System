@@ -12,11 +12,8 @@ include("../config/database.php");
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM patients WHERE id='$id'";
-$result = mysqli_query($conn,$sql);
 
-if(mysqli_num_rows($result)==0){
-    die("Patient Not Found");
-}
+$result = mysqli_query($conn,$sql);
 
 $row = mysqli_fetch_assoc($result);
 
@@ -121,6 +118,102 @@ style="border-radius:50%;object-fit:cover;border:4px solid #2563EB;">
 </div>
 
 <br>
+
+<hr><br>
+
+<h2>
+
+<i class="fa-solid fa-notes-medical"></i>
+
+Medical History
+
+</h2>
+
+<br>
+
+<table class="profile-table">
+
+<tr>
+
+<td><b>Allergy</b></td>
+
+<td><?php echo $row['allergy']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Allergy Details</b></td>
+
+<td><?php echo $row['allergy_details']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Infection</b></td>
+
+<td><?php echo $row['infection']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Infection Details</b></td>
+
+<td><?php echo $row['infection_details']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Chronic Disease</b></td>
+
+<td><?php echo $row['chronic_disease']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Current Medicines</b></td>
+
+<td><?php echo $row['current_medicines']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Previous Surgeries</b></td>
+
+<td><?php echo $row['previous_surgeries']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Emergency Contact</b></td>
+
+<td><?php echo $row['emergency_contact_name']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Emergency Phone</b></td>
+
+<td><?php echo $row['emergency_contact_phone']; ?></td>
+
+</tr>
+
+<tr>
+
+<td><b>Medical Notes</b></td>
+
+<td><?php echo nl2br($row['medical_notes']); ?></td>
+
+</tr>
+
+</table>
 
 <div class="table-box">
 

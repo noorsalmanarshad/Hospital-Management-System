@@ -44,6 +44,79 @@ if($role=="Doctor"){
 
 }
 
+/* =========================
+   STAFF LOGIN
+========================= */
+
+elseif($role=="Staff"){
+
+    $sql="SELECT * FROM staff
+          WHERE email='$email'
+          AND password='$password'";
+
+    $result=mysqli_query($conn,$sql);
+
+    if(mysqli_num_rows($result)>0){
+
+        $staff=mysqli_fetch_assoc($result);
+
+        $_SESSION['staff_id']=$staff['id'];
+        $_SESSION['staff_name']=$staff['full_name'];
+        $_SESSION['staff_email']=$staff['email'];
+        $_SESSION['role']="Staff";
+
+        header("Location: ../staff/dashboard.php");
+        exit();
+
+    }else{
+
+        echo "<script>
+        alert('Invalid Staff Email or Password');
+        window.location='login.php';
+        </script>";
+
+    }
+
+}
+
+/* =========================
+   PATIENT LOGIN
+========================= */
+
+elseif($role=="Patient"){
+
+    $sql="SELECT * FROM patients
+          WHERE email='$email'
+          AND password='$password'";
+
+    $result=mysqli_query($conn,$sql);
+
+    if(mysqli_num_rows($result)>0){
+
+        $patient=mysqli_fetch_assoc($result);
+
+        $_SESSION['patient_id']=$patient['id'];
+        $_SESSION['patient_name']=$patient['full_name'];
+        $_SESSION['patient_email']=$patient['email'];
+        $_SESSION['role']="Patient";
+
+        header("Location: ../patient/dashboard.php");
+        exit();
+
+    }else{
+
+        echo "<script>
+
+        alert('Invalid Patient Email or Password');
+
+        window.location='login.php';
+
+        </script>";
+
+    }
+
+}
+
 
 /* =========================
    OTHER USERS LOGIN

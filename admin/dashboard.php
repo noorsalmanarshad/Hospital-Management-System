@@ -103,6 +103,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </li>
 
 <li>
+<i class="fa-solid fa-users"></i>
+<a href="../staff/staff.php">Staff</a>
+</li>
+
+<li>
+<i class="fa-solid fa-comments"></i>
+<a href="../feedback/feedback.php">Feedback</a>
+</li>
+
+<li>
 <i class="fa-solid fa-chart-column"></i>
 <a href="../reports/reports.php">Reports</a>
 </li>
