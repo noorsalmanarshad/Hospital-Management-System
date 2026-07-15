@@ -11,6 +11,7 @@ include("../config/database.php");
 
 $id=$_GET['id'];
 
+
 $sql="SELECT * FROM prescriptions WHERE id='$id'";
 
 $result=mysqli_query($conn,$sql);
@@ -31,9 +32,73 @@ $row=mysqli_fetch_assoc($result);
 
 <link rel="stylesheet" href="../assets/css/dashboard.css">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
 </head>
 
 <body>
+
+<div class="sidebar">
+
+<h2>Patient Panel</h2>
+
+<ul>
+
+<li class="active">
+<i class="fa-solid fa-house"></i>
+<a href="dashboard.php">Dashboard</a>
+</li>
+
+<li>
+<i class="fa-solid fa-user"></i>
+<a href="profile.php">My Profile</a>
+</li>
+
+<li>
+<i class="fa-solid fa-user-doctor"></i>
+<a href="doctor.php">My Doctor</a>
+</li>
+
+<li>
+<i class="fa-solid fa-calendar-check"></i>
+<a href="appointments.php">Appointments</a>
+</li>
+
+<li>
+<i class="fa-solid fa-flask"></i>
+<a href="laboratory.php">Laboratory</a>
+</li>
+
+<li>
+<i class="fa-solid fa-file-prescription"></i>
+<a href="prescriptions.php">Prescriptions</a>
+</li>
+
+<li>
+<i class="fa-solid fa-money-bill"></i>
+<a href="bills.php">Bills</a>
+</li>
+
+<li>
+<i class="fa-solid fa-notes-medical"></i>
+<a href="medical_history.php">Medical History</a>
+</li>
+
+<li>
+<i class="fa-solid fa-comment"></i>
+<a href="feedback.php">Feedback</a>
+</li>
+
+<li>
+<i class="fa-solid fa-right-from-bracket"></i>
+<a href="../auth/logout.php">Logout</a>
+</li>
+
+</ul>
+
+</div>
 
 <div class="main">
 
