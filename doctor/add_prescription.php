@@ -95,7 +95,7 @@ New Prescription
 
 <label>Patient Name</label>
 
-<input type="text" name="patient_name" required>
+<input type="text" name="patient_name" placeholder="Enter patient name" required>
 
 </div>
 
@@ -105,7 +105,9 @@ New Prescription
 
 <select name="dosage" required>
 
-<option value="">Select Dosage</option>
+<option value="" disabled selected>
+-- Select Dosage --
+</option>
 
 <option>Once Daily</option>
 
@@ -139,7 +141,7 @@ New Prescription
 
 <label>Medicine</label>
 
-<textarea name="medicine" required></textarea>
+<textarea name="medicine" placeholder="Enter medicine name" required></textarea>
 
 </div>
 
@@ -149,7 +151,9 @@ New Prescription
 
 <select name="duration" required>
 
-<option value="">Select Duration</option>
+<option value="" disabled selected>
+-- Select Duration --
+</option>
 
 <option>3 Days</option>
 

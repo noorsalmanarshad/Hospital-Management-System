@@ -68,7 +68,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Full Name</label>
 
-<input type="text" name="name" required>
+<input type="text" name="name" placeholder="Enter full name" required>
 
 </div>
 
@@ -76,7 +76,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Email</label>
 
-<input type="email" name="email" required>
+<input type="email" name="email" placeholder="Enter email" required>
 
 </div>
 
@@ -88,7 +88,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Password</label>
 
-<input type="password" name="password" required>
+<input type="password" name="password" placeholder="Enter password" required>
 
 </div>
 
@@ -96,7 +96,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Phone</label>
 
-<input type="text" name="phone" required>
+<input type="text" name="phone" placeholder="0000-0000000" required>
 
 </div>
 
@@ -108,7 +108,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Department</label>
 
-<select name="department">
+<select name="department" required>
+
+<option value="" disabled selected>
+-- Select Department --
+</option>
 
 <option>Cardiology</option>
 
@@ -130,11 +134,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Gender</label>
 
-<select name="gender">
+<select name="gender" required>
+
+<option value="" disabled selected>
+-- Select Gender --
+</option>
 
 <option>Male</option>
 
 <option>Female</option>
+
+<option>Other</option>
 
 </select>
 
@@ -148,7 +158,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Date of Birth</label>
 
-<input type="date" name="dob">
+<input type="date" name="dob" placeholder="00-00-0000" required>
 
 </div>
 

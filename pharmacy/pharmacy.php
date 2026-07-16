@@ -82,6 +82,7 @@ Add Medicine
 <th>Company</th>
 <th>Price</th>
 <th>Stock</th>
+<th>Manufacture Date</th>
 <th>Expiry Date</th>
 <th>Action</th>
 
@@ -117,7 +118,17 @@ while($row=mysqli_fetch_assoc($result)){
 
 <td><?php echo $row['stock']; ?></td>
 
-<td><?php echo $row['expiry_date']; ?></td>
+<td>
+
+<?php echo date("d M Y",strtotime($row['manufacture_date'])); ?>
+
+</td>
+
+<td>
+
+<?php echo date("d M Y",strtotime($row['expiry_date'])); ?>
+
+</td>
 
 <td class="action-buttons">
 

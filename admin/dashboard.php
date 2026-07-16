@@ -98,6 +98,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </li>
 
 <li>
+<i class="fa-solid fa-boxes-stacked"></i>
+<a href="../inventory/inventory.php">Inventory</a>
+</li>
+
+<li>
 <i class="fa-solid fa-file-invoice-dollar"></i>
 <a href="../billing/billing.php">Billing</a>
 </li>
@@ -135,11 +140,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="topbar">
 
-<div>
-
 <h2>Admin Dashboard</h2>
-
-</div>
 
 <div class="top-icons">
 

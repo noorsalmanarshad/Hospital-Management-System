@@ -98,6 +98,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </li>
 
 <li>
+<i class="fa-solid fa-notes-medical"></i>
+<a href="medical_history.php">Medical History</a>
+</li>
+
+<li>
 
 <i class="fa-solid fa-comment"></i>
 

@@ -14,6 +14,8 @@ $price=$_POST['price'];
 
 $stock=$_POST['stock'];
 
+$manufacture = $_POST['manufacture_date'];
+
 $expiry=$_POST['expiry_date'];
 
 $sql="UPDATE medicines SET

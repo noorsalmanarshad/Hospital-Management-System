@@ -59,12 +59,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="input-box">
 <label>Patient Name</label>
-<input type="text" name="patient_name" required>
+<input type="text" name="patient_name" placeholder="Enter patient name" required>
 </div>
 
 <div class="input-box">
 <label>Doctor Name</label>
-<input type="text" name="doctor_name" required>
+<input type="text" name="doctor_name" placeholder="Enter doctor name" required>
 </div>
 
 </div>

@@ -63,7 +63,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Medicine Name</label>
 
-<input type="text" name="medicine_name" required>
+<input type="text" name="medicine_name" placeholder="Enter medicine name" required>
 
 </div>
 
@@ -71,7 +71,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Category</label>
 
-<select name="category">
+<select name="category" required>
+
+<option value="" disabled selected>
+-- Select Category --
+</option>
 
 <option>Tablet</option>
 
@@ -95,7 +99,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Company</label>
 
-<input type="text" name="company" required>
+<input type="text" name="company" placeholder="Enter company name" required>
 
 </div>
 
@@ -103,7 +107,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Price (Rs)</label>
 
-<input type="number" step="0.01" name="price" required>
+<input type="number" step="0.01" name="price" placeholder="Enter price" required>
 
 </div>
 
@@ -115,7 +119,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Stock</label>
 
-<input type="number" name="stock" required>
+<input type="number" name="stock" placeholder="Enter stock" required>
+
+</div>
+
+<div class="input-box">
+
+<label>Manufacture Date</label>
+
+<input type="date" name="manufacture_date" placeholder="00-00-0000" required>
 
 </div>
 
@@ -123,7 +135,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Expiry Date</label>
 
-<input type="date" name="expiry_date" required>
+<input type="date" name="expiry_date" placeholder="00-00-0000" required>
 
 </div>
 

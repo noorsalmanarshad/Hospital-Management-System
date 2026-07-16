@@ -139,6 +139,28 @@ required>
 
 </div>
 
+<div class="input-box">
+
+<label>Rating</label>
+
+<select name="rating" required>
+
+<option value="">Select Rating</option>
+
+<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+
+<option value="4">⭐⭐⭐⭐ Good</option>
+
+<option value="3">⭐⭐⭐ Average</option>
+
+<option value="2">⭐⭐ Poor</option>
+
+<option value="1">⭐ Very Poor</option>
+
+</select>
+
+</div>
+
 <button class="save-btn">
 
 <i class="fa-solid fa-paper-plane"></i>

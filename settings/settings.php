@@ -180,7 +180,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Current Password</label>
 
-<input type="password">
+<input type="password" placeholder="Enter current password" required>
 
 </div>
 
@@ -188,7 +188,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>New Password</label>
 
-<input type="password">
+<input type="password" placeholder="Enter new password" required>
 
 </div>
 
@@ -198,7 +198,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Confirm Password</label>
 
-<input type="password">
+<input type="password" placeholder="Confirm new password" required>
 
 </div>
 

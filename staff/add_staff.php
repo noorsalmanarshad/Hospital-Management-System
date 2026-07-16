@@ -63,7 +63,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Full Name</label>
 
-<input type="text" name="full_name" required>
+<input type="text" name="full_name" placeholder="Enter full name" required>
 
 </div>
 
@@ -71,7 +71,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Email</label>
 
-<input type="email" name="email" required>
+<input type="email" name="email" placeholder="Enter email" required>
 
 </div>
 
@@ -83,7 +83,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Password</label>
 
-<input type="password" name="password" required>
+<input type="password" name="password" placeholder="Enter password" required>
 
 </div>
 
@@ -91,7 +91,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Contact Number</label>
 
-<input type="text" name="contact" required>
+<input type="text" name="contact" placeholder="0000-0000000" required>
 
 </div>
 
@@ -111,11 +111,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Gender</label>
 
-<select name="gender">
+<select name="gender" required>
+
+<option value="" disabled selected>
+-- Select Gender --
+</option>
 
 <option>Male</option>
 
 <option>Female</option>
+
+<option>Other</option>
 
 </select>
 
@@ -129,7 +135,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Date of Birth</label>
 
-<input type="date" name="dob">
+<input type="date" name="dob" placeholder="00-00-0000" required>
 
 </div>
 
@@ -149,7 +155,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Staff Role</label>
 
-<select name="role">
+<select name="role" required>
+
+<option value="" disabled selected>
+-- Select Role --
+</option>
 
 <option>Receptionist</option>
 
@@ -171,7 +181,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Shift</label>
 
-<select name="shift">
+<select name="shift" required>
+
+<option value="" disabled selected>
+-- Select Shift --
+</option>
 
 <option>Morning</option>
 
@@ -191,7 +205,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Duty Status</label>
 
-<select name="duty_status">
+<select name="duty_status" required>
+
+<option value="" disabled selected>
+-- Select Duty Status --
+</option>
 
 <option>On Duty</option>
 
@@ -205,7 +223,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Salary</label>
 
-<input type="number" name="salary">
+<input type="number" name="salary" placeholder="Enter salary" required>
 
 </div>
 
@@ -217,7 +235,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <label>Working Hours</label>
 
-<select name="working_hours">
+<select name="working_hours" required>
+
+<option value="" disabled selected>
+-- Select Working Hours --
+</option>
 
 <option>6 Hours</option>
 

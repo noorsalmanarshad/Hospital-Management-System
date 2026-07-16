@@ -126,6 +126,18 @@ value="<?php echo $row['stock']; ?>">
 
 <div class="input-box">
 
+<label>Manufacture Date</label>
+
+<input
+type="date"
+name="manufacture_date"
+value="<?php echo $row['manufacture_date']; ?>"
+required>
+
+</div>
+
+<div class="input-box">
+
 <label>Expiry Date</label>
 
 <input type="date" name="expiry_date"

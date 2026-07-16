@@ -47,6 +47,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <a href="dashboard.php">Dashboard</a>
 </li>
 
+<li>
+<i class="fa-solid fa-user"></i>
+<a href="profile.php">My Profile</a>
+</li>
+
+<li>
+<i class="fa-solid fa-user-doctor"></i>
+<a href="doctor.php">My Doctor</a>
+</li>
+
+<li>
+<i class="fa-solid fa-calendar-check"></i>
+<a href="appointments.php">Appointments</a>
+</li>
+
+<li>
+<i class="fa-solid fa-flask"></i>
+<a href="laboratory.php">Laboratory</a>
+</li>
+
+<li>
+<i class="fa-solid fa-file-prescription"></i>
+<a href="prescriptions.php">Prescriptions</a>
+</li>
+
+<li>
+<i class="fa-solid fa-money-bill"></i>
+<a href="bills.php">Bills</a>
+</li>
+
+<li>
+<i class="fa-solid fa-notes-medical"></i>
+<a href="medical_history.php">Medical History</a>
+</li>
+
+
 <li class="active">
 <i class="fa-solid fa-comment"></i>
 <a href="feedback.php">Feedback</a>
